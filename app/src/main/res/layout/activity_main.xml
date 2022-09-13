@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/txv_nome_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/txv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        app:layout_constraintTop_toBottomOf="@+id/txv_nome_app"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
+        android:layout_marginTop="64dp"/>
+
+    <EditText
+        android:id="@+id/edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txv_email"
+        android:hint="Insira seu email"
+        android:gravity="center"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/txv_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        app:layout_constraintTop_toBottomOf="@+id/edt_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="24sp"
+        android:layout_marginTop="32dp"/>
+
+    <EditText
+        android:id="@+id/edt_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txv_password"
+        android:hint="Insira sua senha"
+        android:gravity="center"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btn_entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edt_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:text="entrar"/>
+
+    <Button
+        android:id="@+id/btn_registrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_entrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"
+        android:text="registrar"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
