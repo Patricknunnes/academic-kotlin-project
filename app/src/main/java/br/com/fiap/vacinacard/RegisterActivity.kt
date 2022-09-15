@@ -6,7 +6,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.fiap.vacinacard.data.DataManager
+import br.com.fiap.vacinacard.data.DataBaseManager
+import br.com.fiap.vacinacard.model.Vacina
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,14 +21,14 @@ class RegisterActivity : AppCompatActivity() {
         val btnRegistro: Button = findViewById(R.id.btn_registrar)
 
         btnRegistro.setOnClickListener {
-            val db = DataManager(this, "usuarios")
+            val db = DataBaseManager(this, "usuarios")
             val usuario = db.findUserById(edtEmail.text.toString())
 
             if(!edtEmail.text.toString().equals(usuario?.email)) {
                 db.insertUser(
                     edtEmail.text.toString(),
                     edtPassword.text.toString(),
-                    edtNome.text.toString()
+                    edtNome.text.toString(),
                 )
                 Toast.makeText(this, "Registrado!", Toast.LENGTH_SHORT).show()
                 val i = Intent(this, HomeActivity::class.java)

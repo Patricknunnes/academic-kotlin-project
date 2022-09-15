@@ -3,15 +3,17 @@ package br.com.fiap.vacinacard
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fiap.vacinacard.data.DataBaseManager
+import br.com.fiap.vacinacard.model.Usuario
 
-class HomeActivity  : AppCompatActivity() {
+class VacinaFormActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_vacina_form)
 
         supportActionBar!!.hide()
 
@@ -27,12 +29,15 @@ class HomeActivity  : AppCompatActivity() {
         val btnHome = findViewById<Button>(R.id.btn_home)
         val btnVacinas = findViewById<Button>(R.id.btn_vacinas)
         val btnPerfil = findViewById<Button>(R.id.btn_perfil)
-        val btnNovaVacina = findViewById<Button>(R.id.btn_nova_vacina)
+        val edtNomeVacina = findViewById<EditText>(R.id.edt_nome_vacina)
+        val edtAnoDose = findViewById<EditText>(R.id.edt_nome_vacina)
+        val edtAnoVencimento = findViewById<EditText>(R.id.edt_nome_vacina)
+
+
 
         btnHome.setOnClickListener {
-            val i = Intent(this, HomeActivity::class.java).apply {
-                putExtra("email", usuario?.email)
-            }
+            val i = Intent(this, HomeActivity::class.java)
+            i.putExtra("email", usuario?.email)
             startActivity(i)
         }
 
@@ -43,15 +48,10 @@ class HomeActivity  : AppCompatActivity() {
         }
 
         btnVacinas.setOnClickListener {
-            val i = Intent(this, VacinaActivity::class.java)
-            i.putExtra("email", usuario?.email)
-            startActivity(i)
-        }
-
-        btnNovaVacina.setOnClickListener{
-            val i = Intent(this, VacinaFormActivity::class.java)
-            i.putExtra("email", usuario?.email)
-            startActivity(i)
+            val vacinaIntent = Intent(this, VacinaActivity::class.java)
+            vacinaIntent.putExtra("email", usuario?.email)
+            startActivity(vacinaIntent)
         }
     }
+
 }

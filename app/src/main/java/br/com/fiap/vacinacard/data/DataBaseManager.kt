@@ -6,8 +6,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import br.com.fiap.vacinacard.model.Usuario
+import br.com.fiap.vacinacard.model.Vacina
 
-class DataManager(context: Context, name: String) : SQLiteOpenHelper(context, name, null, 2) {
+class DataBaseManager(context: Context, name: String) : SQLiteOpenHelper(context, name, null, 2) {
     override fun onCreate(p0: SQLiteDatabase?) {
         val createTable = "CREATE TABLE tbl_usuario (" +
                 "email VARCHAR(50) NOT NULL, " +
@@ -42,7 +43,7 @@ class DataManager(context: Context, name: String) : SQLiteOpenHelper(context, na
     @SuppressLint("Range")
     fun findUserById (email: String) : Usuario? {
         val p0 = this.writableDatabase
-        p0.rawQuery("SELECT * FROM tbl_user WHERE email = ?", arrayOf(email)).use {
+        p0.rawQuery("SELECT * FROM tbl_usuario WHERE email = ?", arrayOf(email)).use {
             if (it.moveToFirst()){
                 var result = Usuario(it.getString(it.getColumnIndex("email")),
                     it.getString(it.getColumnIndex("senha")), it.getString(it.getColumnIndex("nome")))

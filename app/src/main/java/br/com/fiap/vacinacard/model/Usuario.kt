@@ -11,5 +11,6 @@ class Usuario {
     var email: String? = null
     var senha: String? = null
     var nome: String? = null
+    var vacinas: MutableList<Vacina>? = null
 
 }
