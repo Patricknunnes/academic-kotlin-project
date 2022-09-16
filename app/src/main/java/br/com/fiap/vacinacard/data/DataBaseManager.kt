@@ -16,7 +16,15 @@ class DataBaseManager(context: Context, name: String) : SQLiteOpenHelper(context
                 "nome VARCHAR(50), " +
                 "PRIMARY KEY (email));"
 
+        val createTable2 = "CREATE TABLE tbl_vacina (" +
+                "nome VARCHAR(50) NOT NULL, " +
+                "ano_dose VARCHAR(4) NOT NULL, " +
+                "ano_vencimento VARCHAR(4) NOT NULL, " +
+                "PRIMARY KEY (nome), " +
+                "FOREIGN KEY (email));"
+
         p0!!.execSQL(createTable)
+        p0!!.execSQL(createTable2)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

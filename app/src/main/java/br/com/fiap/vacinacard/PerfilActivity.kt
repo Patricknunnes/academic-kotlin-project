@@ -3,17 +3,16 @@ package br.com.fiap.vacinacard
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fiap.vacinacard.data.DataBaseManager
-import br.com.fiap.vacinacard.model.Usuario
+import org.w3c.dom.Text
 
-class VacinaFormActivity : AppCompatActivity(){
+class PerfilActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_vacina_form)
+        setContentView(R.layout.activity_perfil)
 
         supportActionBar!!.hide()
 
@@ -21,28 +20,29 @@ class VacinaFormActivity : AppCompatActivity(){
         val db = DataBaseManager(this, "usuarios")
         val usuario = db.findUserById(email!!)
 
-        // relativo ao nome do usuário
+        // relativo ao nome do usuário e email
         val nome: String? = usuario!!.nome
         var txvNome: TextView = findViewById(R.id.txv_nome)
         txvNome.text = "Olá, $nome!"
+        var txvEmail: TextView = findViewById(R.id.txv_email)
+        txvEmail.text = email
+        var txvNomeUsuario: TextView = findViewById(R.id.txv_nome_usuario)
+        txvNomeUsuario.text = nome
 
         val btnHome = findViewById<Button>(R.id.btn_home)
         val btnVacinas = findViewById<Button>(R.id.btn_vacinas)
         val btnPerfil = findViewById<Button>(R.id.btn_perfil)
-        val edtNomeVacina = findViewById<EditText>(R.id.edt_nome_vacina)
-        val edtAnoDose = findViewById<EditText>(R.id.edt_nome_vacina)
-        val edtAnoVencimento = findViewById<EditText>(R.id.edt_nome_vacina)
-
-
+        val btnDeletar = findViewById<Button>(R.id.btn_deletar_perfil)
 
         btnHome.setOnClickListener {
-            val homeIntent = Intent(this, HomeActivity::class.java)
-            homeIntent.putExtra("email", usuario?.email)
+            val homeIntent = Intent(this, HomeActivity::class.java).apply {
+                putExtra("email", usuario?.email)
+            }
             startActivity(homeIntent)
         }
 
         btnPerfil.setOnClickListener {
-            val perfilIntent = Intent(this, HomeActivity::class.java)
+            val perfilIntent = Intent(this, PerfilActivity::class.java)
             perfilIntent.putExtra("email", usuario?.email)
             startActivity(perfilIntent)
         }
@@ -52,6 +52,11 @@ class VacinaFormActivity : AppCompatActivity(){
             vacinaIntent.putExtra("email", usuario?.email)
             startActivity(vacinaIntent)
         }
-    }
 
+        btnDeletar.setOnClickListener{
+            db.deleteUser(usuario.email!!)
+            val mainIntent = Intent(this, MainActivity::class.java)
+            startActivity(mainIntent)
+        }
+    }
 }

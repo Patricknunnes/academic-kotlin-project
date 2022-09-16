@@ -27,17 +27,17 @@ class MainActivity : AppCompatActivity() {
             if (edtEmail.text.toString().equals(usuario?.email) && edtPassword.text.toString()
                     .equals(usuario?.senha)
             ) {
-                val i = Intent(this, HomeActivity::class.java)
-                i.putExtra("email", usuario?.email)
-                startActivity(i)
+                val homeIntent = Intent(this, HomeActivity::class.java)
+                homeIntent.putExtra("email", usuario?.email)
+                startActivity(homeIntent)
             } else {
                 Toast.makeText(this, "Dados inválidos", Toast.LENGTH_SHORT).show()
             }
         }
 
         btnRegistrar.setOnClickListener {
-            val i = Intent(this, RegisterActivity::class.java)
-            startActivity(i)
+            val registerIntent = Intent(this, RegisterActivity::class.java)
+            startActivity(registerIntent)
         }
     }
 }

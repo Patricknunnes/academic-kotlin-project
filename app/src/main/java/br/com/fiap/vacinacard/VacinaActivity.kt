@@ -45,21 +45,21 @@ class VacinaActivity : AppCompatActivity() {
         val btnPerfil = findViewById<Button>(R.id.btn_perfil)
 
         btnHome.setOnClickListener {
-            val i = Intent(this, HomeActivity::class.java)
-            i.putExtra("email", usuario.email)
-            startActivity(i)
+            val homeIntent = Intent(this, HomeActivity::class.java)
+            homeIntent.putExtra("email", usuario.email)
+            startActivity(homeIntent)
         }
 
         btnPerfil.setOnClickListener {
-            val i = Intent(this, HomeActivity::class.java)
-            i.putExtra("email", usuario.email)
-            startActivity(i)
+            val perfilIntent = Intent(this, HomeActivity::class.java)
+            perfilIntent.putExtra("email", usuario.email)
+            startActivity(perfilIntent)
         }
 
         btnVacinas.setOnClickListener {
-            val i = Intent(this, VacinaActivity::class.java)
-            i.putExtra("email", usuario.email)
-            startActivity(i)
+            val vacinaIntent = Intent(this, VacinaActivity::class.java)
+            vacinaIntent.putExtra("email", usuario.email)
+            startActivity(vacinaIntent)
         }
     }
 }

@@ -31,9 +31,9 @@ class RegisterActivity : AppCompatActivity() {
                     edtNome.text.toString(),
                 )
                 Toast.makeText(this, "Registrado!", Toast.LENGTH_SHORT).show()
-                val i = Intent(this, HomeActivity::class.java)
-                i.putExtra("nome", edtNome.text.toString())
-                startActivity(i)
+                val homeIntent = Intent(this, HomeActivity::class.java)
+                homeIntent.putExtra("nome", edtNome.text.toString())
+                startActivity(homeIntent)
             } else {
                 Toast.makeText(this, "Email já registrado!", Toast.LENGTH_SHORT).show()
             }
